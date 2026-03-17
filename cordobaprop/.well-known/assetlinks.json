@@ -1,0 +1,8 @@
+[{
+  "relation": ["delegate_permission/common.handle_all_urls"],
+  "target": {
+    "namespace": "android_app",
+    "package_name": "com.eikujaime.cordobaprop",
+    "sha256_cert_fingerprints": ["58:71:D3:7D:2C:7F:34:0F:B1:A2:36:74:85:C3:ED:FC:0A:9E:6E:1D:9A:4B:8D:7D:42:B5:A8:E3:43:80:53:A4"]
+  }
+}]
