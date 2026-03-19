@@ -6,13 +6,13 @@
 <meta name="theme-color" content="#E8A838">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="CórdobaProp">
+<meta name="apple-mobile-web-app-title" content="JePropiedades">
 <meta name="description" content="Asistente inmobiliario con IA para Córdoba, Argentina">
 <meta name="mobile-web-app-capable" content="yes">
 <link rel="manifest" href="/manifest.json">
 <link rel="apple-touch-icon" href="/icons/icon-192.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon-96.png">
-<title>CórdobaProp — Asistente Inmobiliario IA</title>
+<title>JePropiedades — Asistente Inmobiliario IA</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
@@ -25,14 +25,34 @@
   --safe-top: env(safe-area-inset-top);
   --safe-bot: env(safe-area-inset-bottom);
 }
-body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:100dvh;display:flex;flex-direction:column;max-width:430px;margin:0 auto;overflow:hidden;padding-top:var(--safe-top);padding-bottom:var(--safe-bot);}
-#install-banner{background:linear-gradient(90deg,#1A2D10,#0D1A20);border-bottom:1px solid #2D4020;padding:10px 16px;display:none;align-items:center;gap:10px;flex-shrink:0;}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--font-body);
+  height:100dvh;display:flex;flex-direction:column;
+  max-width:430px;margin:0 auto;overflow:hidden;
+  padding-top:var(--safe-top);padding-bottom:var(--safe-bot);
+}
+
+/* INSTALL BANNER */
+#install-banner{
+  background:linear-gradient(90deg,#1A2D10,#0D1A20);
+  border-bottom:1px solid #2D4020;
+  padding:10px 16px;display:none;
+  align-items:center;gap:10px;flex-shrink:0;
+}
 #install-banner.show{display:flex}
 #install-banner .ib-text{flex:1;font-size:13px;color:var(--text)}
 #install-banner .ib-text span{color:var(--gold);font-weight:600}
 #install-banner .ib-install{background:var(--gold);color:#1a1200;border:none;border-radius:8px;padding:7px 14px;font-size:13px;font-weight:600;cursor:pointer;white-space:nowrap}
 #install-banner .ib-close{background:none;border:none;color:var(--muted);font-size:18px;cursor:pointer;padding:4px;flex-shrink:0}
-#setup-screen{position:fixed;inset:0;background:var(--bg);z-index:100;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:28px;max-width:430px;margin:0 auto;padding-top:calc(28px + var(--safe-top));padding-bottom:calc(28px + var(--safe-bot));}
+
+/* SETUP SCREEN */
+#setup-screen{
+  position:fixed;inset:0;background:var(--bg);z-index:100;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:28px;max-width:430px;margin:0 auto;
+  padding-top:calc(28px + var(--safe-top));
+  padding-bottom:calc(28px + var(--safe-bot));
+}
 #setup-screen.hidden{display:none}
 .setup-logo{font-family:var(--font-display);font-size:36px;color:var(--gold);text-align:center;margin-bottom:6px}
 .setup-sub{font-size:14px;color:var(--muted);text-align:center;margin-bottom:28px}
@@ -53,6 +73,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
 .connect-btn:disabled{opacity:.5;cursor:not-allowed}
 .free-badge{background:#0D2117;border:1px solid #1A3A25;color:#3FB950;font-size:12px;font-weight:600;padding:6px 14px;border-radius:20px;display:inline-flex;align-items:center;gap:6px;margin-bottom:20px}
 .err-msg{color:var(--red);font-size:12px;margin-top:8px;display:none;padding:8px 12px;background:#1A0D0D;border:1px solid #3A1A1A;border-radius:8px}
+
+/* HEADER */
 .header{padding:12px 20px 10px;background:var(--surface);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-shrink:0}
 .logo{font-family:var(--font-display);font-size:21px;color:var(--gold)}
 .logo span{color:var(--text);font-size:12px;font-family:var(--font-body);font-weight:300;display:block;margin-top:-3px}
@@ -60,18 +82,26 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
 .status-dot{width:7px;height:7px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
 @keyframes pulse{0%,100%{opacity:1}50%{opacity:.4}}
 .reset-btn{background:none;border:none;cursor:pointer;color:var(--muted);font-size:18px;padding:4px 6px;border-radius:6px}
+
+/* PAGES */
 .pages{flex:1;overflow:hidden;position:relative}
 .page{position:absolute;inset:0;overflow-y:auto;padding:16px 20px 24px;display:none;flex-direction:column;gap:14px}
 .page.active{display:flex}
+
+/* NAV */
 .nav{display:flex;background:var(--surface);border-top:1px solid var(--border);flex-shrink:0;padding:8px 0 10px}
 .nav-btn{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;background:none;border:none;cursor:pointer;color:var(--muted);transition:color .2s;padding:4px 0}
 .nav-btn.active{color:var(--gold)}
 .nav-icon{font-size:20px;line-height:1}
 .nav-label{font-size:10px;font-weight:500;letter-spacing:.3px}
+
+/* CARDS */
 .card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);padding:16px}
 .card-title{font-family:var(--font-display);font-size:17px;margin-bottom:4px}
 .card-sub{font-size:12px;color:var(--muted);margin-bottom:14px}
 .section-title{font-size:11px;font-weight:600;color:var(--muted);letter-spacing:1px;text-transform:uppercase;padding:2px 0}
+
+/* CHAT */
 .chat-wrap{flex:1;overflow:hidden;display:flex;flex-direction:column}
 .messages-area{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:10px;padding:12px 0}
 .msg{max-width:86%;display:flex;flex-direction:column;gap:3px;animation:msgIn .2s ease}
@@ -97,21 +127,42 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
 .dot{width:7px;height:7px;border-radius:50%;background:var(--muted);animation:bounce .8s infinite}
 .dot:nth-child(2){animation-delay:.15s}.dot:nth-child(3){animation-delay:.3s}
 @keyframes bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-6px)}}
+
+/* SEARCH */
+.search-bar-wrap{position:relative}
+.search-bar{width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:22px;padding:11px 44px 11px 16px;color:var(--text);font-family:var(--font-body);font-size:14px;outline:none;transition:border-color .2s}
+.search-bar:focus{border-color:var(--gold)}
+.search-bar::placeholder{color:var(--muted)}
+.search-go{position:absolute;right:6px;top:50%;transform:translateY(-50%);width:34px;height:34px;border-radius:50%;background:var(--gold);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:16px}
 .filter-row{display:flex;gap:8px;flex-wrap:wrap}
 .filter-pill{background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:12px;padding:6px 14px;border-radius:20px;cursor:pointer;transition:all .2s}
 .filter-pill.sel{background:#2D2200;border-color:var(--gold);color:var(--gold)}
-.prop-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
-.prop-img{height:130px;display:flex;align-items:center;justify-content:center;font-size:38px;position:relative}
-.prop-badge{position:absolute;top:10px;left:10px;background:var(--gold);color:#1a1200;font-size:10px;font-weight:700;padding:3px 9px;border-radius:20px;letter-spacing:.5px}
+
+/* PROPERTY CARDS — ML */
+.prop-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;transition:border-color .2s}
+.prop-card:active{border-color:var(--gold)}
+.prop-thumb{width:100%;height:160px;object-fit:cover;background:var(--surface);display:block}
+.prop-thumb-placeholder{height:140px;display:flex;align-items:center;justify-content:center;font-size:40px;background:linear-gradient(135deg,var(--surface),var(--card))}
 .prop-body{padding:14px}
-.prop-price{font-family:var(--font-display);font-size:20px;color:var(--gold);margin-bottom:4px}
-.prop-title{font-size:13px;font-weight:500;margin-bottom:8px}
+.prop-source{display:inline-flex;align-items:center;gap:5px;background:#1A1A2D;border:1px solid #2D2D4A;color:#58A6FF;font-size:10px;font-weight:600;padding:3px 8px;border-radius:10px;margin-bottom:8px;letter-spacing:.5px}
+.prop-price{font-family:var(--font-display);font-size:22px;color:var(--gold);margin-bottom:3px}
+.prop-title{font-size:13px;font-weight:500;margin-bottom:4px;line-height:1.4}
+.prop-location{font-size:12px;color:var(--muted);margin-bottom:10px;display:flex;align-items:center;gap:4px}
 .prop-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:10px}
 .tag{background:var(--surface);border:1px solid var(--border);color:var(--muted);font-size:11px;padding:3px 8px;border-radius:6px}
-.pros-cons{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-.pro,.con{font-size:11px;padding:6px 8px;border-radius:8px}
-.pro{background:#0D2117;color:#3FB950;border:1px solid #1A3A25}
-.con{background:#1A120D;color:#E8A838;border:1px solid #3A2A1A}
+.prop-link{display:block;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;text-align:center;color:var(--gold);font-size:13px;font-weight:600;text-decoration:none;transition:all .2s}
+.prop-link:active{background:#2D2200;border-color:var(--gold)}
+
+/* LOADING / EMPTY */
+.search-loading{display:flex;flex-direction:column;align-items:center;gap:12px;padding:40px 20px;color:var(--muted);font-size:13px}
+.search-spinner{width:32px;height:32px;border:3px solid var(--border);border-top-color:var(--gold);border-radius:50%;animation:spin .8s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.search-empty{text-align:center;padding:40px 20px;color:var(--muted);font-size:13px;line-height:1.8}
+.search-empty .em-icon{font-size:36px;margin-bottom:10px}
+.ml-badge{display:flex;align-items:center;gap:8px;background:#1A1A2D;border:1px solid #2D2D4A;border-radius:10px;padding:10px 14px;font-size:12px;color:var(--muted)}
+.ml-badge b{color:#58A6FF}
+
+/* CALC */
 .calc-group{display:flex;flex-direction:column;gap:5px}
 .calc-label{font-size:11px;color:var(--muted);font-weight:600;letter-spacing:.5px;text-transform:uppercase}
 .calc-input{background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:10px 14px;color:var(--text);font-family:var(--font-body);font-size:15px;outline:none;transition:border-color .2s;width:100%}
@@ -125,6 +176,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
 .result-item{text-align:center}
 .result-val{font-family:var(--font-display);font-size:20px;color:var(--gold2)}
 .result-lbl{font-size:11px;color:var(--muted);margin-top:2px}
+
+/* ZONES */
 .zone-card{background:var(--card);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;cursor:pointer}
 .zone-header{padding:14px 16px;display:flex;justify-content:space-between;align-items:center}
 .zone-name{font-family:var(--font-display);font-size:16px}
@@ -144,6 +197,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
 .trend{font-size:11px;font-weight:600;padding:2px 7px;border-radius:10px}
 .trend.up{background:#0D2117;color:#3FB950}
 .trend.stable{background:#1A1200;color:#E8A838}
+
+/* INVESTOR */
 .inv-header{background:linear-gradient(135deg,#1A2D10,#0D1A20);border:1px solid #2D4020;border-radius:var(--r);padding:16px;display:flex;align-items:center;gap:12px}
 .inv-icon{width:44px;height:44px;background:var(--gold);border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;flex-shrink:0}
 .scenario-box{border-radius:var(--r);padding:14px;border:1px solid}
@@ -155,24 +210,36 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
 .sc-title{font-weight:600;font-size:14px}
 .sc-detail{font-size:12px;color:var(--muted);line-height:1.6}
 .sc-roi{font-family:var(--font-display);font-size:18px;margin-top:8px}
+
 ::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-thumb{background:var(--border);border-radius:4px}
 </style>
 </head>
 <body>
+
 <div id="install-banner">
-  <div class="ib-text">📲 <span>Instalá CórdobaProp</span> como app en tu celular</div>
+  <div class="ib-text">📲 <span>Instalá JePropiedades</span> como app en tu celular</div>
   <button class="ib-install" onclick="installApp()">Instalar</button>
   <button class="ib-close" onclick="closeBanner()">✕</button>
 </div>
+
 <div id="setup-screen">
   <div class="free-badge">✅ 100% Gratuito — Google Gemini API</div>
-  <div class="setup-logo">CórdobaProp</div>
+  <div class="setup-logo">JePropiedades</div>
   <div class="setup-sub">Asistente inmobiliario con IA gratuita</div>
   <div class="setup-card">
-    <div class="setup-step"><div class="step-num">1</div><div class="step-text">Entrá a <a href="https://aistudio.google.com/apikey" target="_blank"><b>aistudio.google.com/apikey</b></a> con tu cuenta Google (gratis, sin tarjeta)</div></div>
-    <div class="setup-step"><div class="step-num">2</div><div class="step-text">Hacé clic en <b>"Create API Key"</b> y copiá la clave (empieza con <b>AIza...</b>)</div></div>
-    <div class="setup-step"><div class="step-num">3</div><div class="step-text">Pegala acá abajo y tocá <b>Conectar</b></div></div>
+    <div class="setup-step">
+      <div class="step-num">1</div>
+      <div class="step-text">Entrá a <a href="https://aistudio.google.com/apikey" target="_blank"><b>aistudio.google.com/apikey</b></a> con tu cuenta Google (gratis, sin tarjeta)</div>
+    </div>
+    <div class="setup-step">
+      <div class="step-num">2</div>
+      <div class="step-text">Hacé clic en <b>"Create API Key"</b> y copiá la clave (empieza con <b>AIza...</b>)</div>
+    </div>
+    <div class="setup-step">
+      <div class="step-num">3</div>
+      <div class="step-text">Pegala acá abajo y tocá <b>Conectar</b></div>
+    </div>
   </div>
   <div style="width:100%">
     <div class="key-input-wrap">
@@ -187,14 +254,18 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
     <b style="color:var(--green)">15 consultas/minuto · 1M tokens/día gratis</b>
   </div>
 </div>
+
 <div class="header">
-  <div><div class="logo">CórdobaProp<span>Asistente inmobiliario IA</span></div></div>
+  <div><div class="logo">JePropiedades<span>Asistente inmobiliario IA</span></div></div>
   <div style="display:flex;align-items:center;gap:8px">
     <div class="api-status"><div class="status-dot"></div>Gemini Free</div>
     <button class="reset-btn" onclick="resetKey()" title="Cambiar clave API">⚙️</button>
   </div>
 </div>
+
 <div class="pages">
+
+  <!-- CHAT -->
   <div class="page active" id="page-chat">
     <div class="chat-wrap">
       <div class="quick-chips">
@@ -206,8 +277,8 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
       </div>
       <div class="messages-area" id="messages">
         <div class="msg bot">
-          <div class="bubble">¡Hola! Soy <b>CórdobaProp</b> 🏡<br>Tu asistente inmobiliario para Córdoba.<br><br>Puedo ayudarte con:<br>• Búsqueda y análisis de propiedades<br>• Precios y tendencias por zona<br>• Cálculo de rentabilidades<br>• Modo Inversor con 3 escenarios<br><br>¿Con qué empezamos?</div>
-          <div class="msg-time">Ahora · Gemini 2.0 Flash</div>
+          <div class="bubble">¡Hola! Soy <b>JePropiedades</b> 🏡<br>Tu asistente inmobiliario para Córdoba.<br><br>Puedo ayudarte con:<br>• Búsqueda y análisis de propiedades<br>• Precios y tendencias por zona<br>• Cálculo de rentabilidades<br>• Modo Inversor con 3 escenarios<br><br>¿Con qué empezamos?</div>
+          <div class="msg-time">Ahora · Gemini 1.5 Flash</div>
         </div>
       </div>
       <div class="chat-input-area">
@@ -218,40 +289,33 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
       </div>
     </div>
   </div>
+
+  <!-- SEARCH — MercadoLibre -->
   <div class="page" id="page-search">
+    <div class="ml-badge">
+      🔴 Propiedades en tiempo real vía <b>MercadoLibre Inmuebles</b>
+    </div>
+    <div class="search-bar-wrap">
+      <input class="search-bar" id="ml-search" type="text" placeholder="Ej: departamento 2 dormitorios..." value="" onkeydown="if(event.key==='Enter')buscarML()">
+      <button class="search-go" onclick="buscarML()">🔍</button>
+    </div>
     <div class="section-title">Operación</div>
     <div class="filter-row">
-      <div class="filter-pill sel" onclick="setPill(this,'op')">Compra</div>
+      <div class="filter-pill sel" onclick="setPill(this,'op')">Venta</div>
       <div class="filter-pill" onclick="setPill(this,'op')">Alquiler</div>
-      <div class="filter-pill" onclick="setPill(this,'op')">Temporario</div>
     </div>
     <div class="section-title">Tipo</div>
     <div class="filter-row">
-      <div class="filter-pill sel" onclick="setPill(this,'tp')">Dpto.</div>
+      <div class="filter-pill sel" onclick="setPill(this,'tp')">Departamento</div>
       <div class="filter-pill" onclick="setPill(this,'tp')">Casa</div>
       <div class="filter-pill" onclick="setPill(this,'tp')">PH</div>
       <div class="filter-pill" onclick="setPill(this,'tp')">Local</div>
     </div>
-    <div class="section-title">Dormitorios</div>
-    <div class="filter-row">
-      <div class="filter-pill" onclick="setPill(this,'dm')">1</div>
-      <div class="filter-pill sel" onclick="setPill(this,'dm')">2</div>
-      <div class="filter-pill" onclick="setPill(this,'dm')">3</div>
-      <div class="filter-pill" onclick="setPill(this,'dm')">4+</div>
-    </div>
-    <div class="prop-card">
-      <div class="prop-img" style="background:linear-gradient(135deg,#1C2A1A,#2D3A1E,#1A2215)">🏢<div class="prop-badge">EN VENTA</div></div>
-      <div class="prop-body"><div class="prop-price">USD 58.000</div><div class="prop-title">Departamento 2 dorm. — Barrio Pueyrredón</div><div class="prop-tags"><div class="tag">60 m²</div><div class="tag">2 dorm.</div><div class="tag">1 baño</div><div class="tag">Balcón</div></div><div class="pros-cons"><div class="pro">✅ Luminoso y amplio</div><div class="pro">✅ Buena conectividad</div><div class="con">⚠️ Edificio antiguo</div><div class="con">⚠️ Sin cochera</div></div></div>
-    </div>
-    <div class="prop-card">
-      <div class="prop-img" style="background:linear-gradient(135deg,#1A1A2D,#2D2A3E,#1A1825)">🏠<div class="prop-badge">EN VENTA</div></div>
-      <div class="prop-body"><div class="prop-price">USD 55.000</div><div class="prop-title">Departamento 2 dorm. — Alberdi / Cañada</div><div class="prop-tags"><div class="tag">62 m²</div><div class="tag">2 dorm.</div><div class="tag">1 baño</div><div class="tag">Baulera</div></div><div class="pros-cons"><div class="pro">✅ Ubicación central</div><div class="pro">✅ Alta demanda alquiler</div><div class="con">⚠️ Sin ascensor</div><div class="con">⚠️ Verificar gas</div></div></div>
-    </div>
-    <div class="prop-card">
-      <div class="prop-img" style="background:linear-gradient(135deg,#1A2420,#2A3A2E,#15201C)">🏡<div class="prop-badge">EN VENTA</div></div>
-      <div class="prop-body"><div class="prop-price">USD 52.000</div><div class="prop-title">Departamento 2 dorm. — Alta Córdoba</div><div class="prop-tags"><div class="tag">68 m²</div><div class="tag">2 dorm.</div><div class="tag">1 baño</div><div class="tag">Jardín</div></div><div class="pros-cons"><div class="pro">✅ Mayor superficie</div><div class="pro">✅ Barrio familiar</div><div class="con">⚠️ Menor liquidez</div><div class="con">⚠️ Menos demanda</div></div></div>
-    </div>
+    <button class="calc-btn" onclick="buscarML()" style="margin-top:4px">BUSCAR EN MERCADOLIBRE</button>
+    <div id="ml-results"></div>
   </div>
+
+  <!-- CALC -->
   <div class="page" id="page-calc">
     <div class="card">
       <div class="card-title">Calculadora ROI</div>
@@ -289,14 +353,33 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
       </div>
     </div>
   </div>
+
+  <!-- ZONES -->
   <div class="page" id="page-zones">
     <div style="font-size:13px;color:var(--muted)">Tocá una zona para ver el análisis completo</div>
-    <div class="zone-card" onclick="toggleZone(this)"><div class="zone-header"><div><div class="zone-name">Nueva Córdoba / Centro</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Universitaria · Alta densidad</div></div><div style="text-align:right"><div class="zone-price">USD 55k–90k</div><div style="font-size:11px;color:var(--muted)">2 amb.</div></div></div><div class="zone-body"><div><span class="z-tag uni">🎓 Universitaria</span><span class="z-tag prem">⭐ Alta demanda</span></div><div class="zone-detail">La zona más dinámica de Córdoba. Alta densidad de departamentos, demanda estudiantil constante y excelente liquidez de reventa.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 1.200–1.600</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler 2 amb.</span><span class="zone-stat-val">USD 350–600/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">2–3%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div></div>
-    <div class="zone-card" onclick="toggleZone(this)"><div class="zone-header"><div><div class="zone-name">Cerro de las Rosas / Norte</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Premium · Residencial</div></div><div style="text-align:right"><div class="zone-price">USD 180k–350k</div><div style="font-size:11px;color:var(--muted)">Casas</div></div></div><div class="zone-body"><div><span class="z-tag prem">💎 Premium</span><span class="z-tag fam">👨‍👩‍👧 Familiar</span></div><div class="zone-detail">El barrio más cotizado de Córdoba. Casas con jardín, countries y amenities de alto nivel.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 1.800–2.800</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler casa 3d.</span><span class="zone-stat-val">USD 700–1.500/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">3–5%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div></div>
-    <div class="zone-card" onclick="toggleZone(this)"><div class="zone-header"><div><div class="zone-name">Argüello / Villa Belgrano</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Semipremium · Noroeste</div></div><div style="text-align:right"><div class="zone-price">USD 120k–220k</div><div style="font-size:11px;color:var(--muted)">Casas</div></div></div><div class="zone-body"><div><span class="z-tag fam">👨‍👩‍👧 Familiar</span><span class="z-tag prem">⭐ Relación P/C</span></div><div class="zone-detail">Excelente relación precio-calidad. Casas con jardín en barrios tranquilos y en constante desarrollo.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 900–1.400</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler casa 3d.</span><span class="zone-stat-val">USD 500–1.000/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">4–6%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend stable">→ Estable</span></span></div></div></div>
-    <div class="zone-card" onclick="toggleZone(this)"><div class="zone-header"><div><div class="zone-name">General Paz / Alberdi</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Central · Accesible</div></div><div style="text-align:right"><div class="zone-price">USD 50k–80k</div><div style="font-size:11px;color:var(--muted)">2 amb.</div></div></div><div class="zone-body"><div><span class="z-tag uni">🎓 Joven</span><span class="z-tag fam">🏙️ Céntrico</span></div><div class="zone-detail">Zona limítrofe con Nueva Córdoba. Muy buena ubicación a precios accesibles. Alta demanda de alquiler.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 900–1.200</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler 2 amb.</span><span class="zone-stat-val">USD 300–500/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">3–4%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div></div>
-    <div class="zone-card" onclick="toggleZone(this)"><div class="zone-header"><div><div class="zone-name">Sierras / Carlos Paz</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Turístico · Temporario</div></div><div style="text-align:right"><div class="zone-price">USD 50–120/noche</div><div style="font-size:11px;color:var(--muted)">Airbnb</div></div></div><div class="zone-body"><div><span class="z-tag tur">🏖️ Turístico</span><span class="z-tag prem">💰 ROI alto</span></div><div class="zone-detail">Ideal para Airbnb. Temporada alta nov-marzo con 85%+ de ocupación. ROI potencial 8-12% anual.</div><div class="zone-stat"><span class="zone-stat-label">Precio compra depto</span><span class="zone-stat-val">USD 55k–90k</span></div><div class="zone-stat"><span class="zone-stat-label">Ingreso bruto anual</span><span class="zone-stat-val">USD 8.000–15.000</span></div><div class="zone-stat"><span class="zone-stat-label">ROI potencial</span><span class="zone-stat-val">8–12% anual</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div></div>
+    <div class="zone-card" onclick="toggleZone(this)">
+      <div class="zone-header"><div><div class="zone-name">Nueva Córdoba / Centro</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Universitaria · Alta densidad</div></div><div style="text-align:right"><div class="zone-price">USD 55k–90k</div><div style="font-size:11px;color:var(--muted)">2 amb.</div></div></div>
+      <div class="zone-body"><div><span class="z-tag uni">🎓 Universitaria</span><span class="z-tag prem">⭐ Alta demanda</span></div><div class="zone-detail">La zona más dinámica de Córdoba. Alta densidad de departamentos, demanda estudiantil constante y excelente liquidez de reventa.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 1.200–1.600</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler 2 amb.</span><span class="zone-stat-val">USD 350–600/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">2–3%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div>
+    </div>
+    <div class="zone-card" onclick="toggleZone(this)">
+      <div class="zone-header"><div><div class="zone-name">Cerro de las Rosas / Norte</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Premium · Residencial</div></div><div style="text-align:right"><div class="zone-price">USD 180k–350k</div><div style="font-size:11px;color:var(--muted)">Casas</div></div></div>
+      <div class="zone-body"><div><span class="z-tag prem">💎 Premium</span><span class="z-tag fam">👨‍👩‍👧 Familiar</span></div><div class="zone-detail">El barrio más cotizado de Córdoba. Casas con jardín, countries y amenities de alto nivel.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 1.800–2.800</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler casa 3d.</span><span class="zone-stat-val">USD 700–1.500/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">3–5%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div>
+    </div>
+    <div class="zone-card" onclick="toggleZone(this)">
+      <div class="zone-header"><div><div class="zone-name">Argüello / Villa Belgrano</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Semipremium · Noroeste</div></div><div style="text-align:right"><div class="zone-price">USD 120k–220k</div><div style="font-size:11px;color:var(--muted)">Casas</div></div></div>
+      <div class="zone-body"><div><span class="z-tag fam">👨‍👩‍👧 Familiar</span><span class="z-tag prem">⭐ Relación P/C</span></div><div class="zone-detail">Excelente relación precio-calidad. Casas con jardín en barrios tranquilos y en constante desarrollo.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 900–1.400</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler casa 3d.</span><span class="zone-stat-val">USD 500–1.000/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">4–6%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend stable">→ Estable</span></span></div></div>
+    </div>
+    <div class="zone-card" onclick="toggleZone(this)">
+      <div class="zone-header"><div><div class="zone-name">General Paz / Alberdi</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Central · Accesible</div></div><div style="text-align:right"><div class="zone-price">USD 50k–80k</div><div style="font-size:11px;color:var(--muted)">2 amb.</div></div></div>
+      <div class="zone-body"><div><span class="z-tag uni">🎓 Joven</span><span class="z-tag fam">🏙️ Céntrico</span></div><div class="zone-detail">Zona limítrofe con Nueva Córdoba. Muy buena ubicación a precios accesibles.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 900–1.200</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler 2 amb.</span><span class="zone-stat-val">USD 300–500/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">3–4%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div>
+    </div>
+    <div class="zone-card" onclick="toggleZone(this)">
+      <div class="zone-header"><div><div class="zone-name">Sierras / Carlos Paz</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Turístico · Temporario</div></div><div style="text-align:right"><div class="zone-price">USD 50–120/noche</div><div style="font-size:11px;color:var(--muted)">Airbnb</div></div></div>
+      <div class="zone-body"><div><span class="z-tag tur">🏖️ Turístico</span><span class="z-tag prem">💰 ROI alto</span></div><div class="zone-detail">Ideal para Airbnb. Temporada alta nov-marzo con 85%+ de ocupación. ROI potencial 8-12% anual.</div><div class="zone-stat"><span class="zone-stat-label">Precio compra depto</span><span class="zone-stat-val">USD 55k–90k</span></div><div class="zone-stat"><span class="zone-stat-label">Ingreso bruto anual</span><span class="zone-stat-val">USD 8.000–15.000</span></div><div class="zone-stat"><span class="zone-stat-label">ROI potencial</span><span class="zone-stat-val">8–12% anual</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div>
+    </div>
   </div>
+
+  <!-- INVESTOR -->
   <div class="page" id="page-inv">
     <div class="inv-header"><div class="inv-icon">💼</div><div><div style="font-family:var(--font-display);font-size:18px;color:var(--gold)">Modo Inversor</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Análisis avanzado de rentabilidad</div></div></div>
     <div class="card">
@@ -317,7 +400,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
       <div class="scenario-box green"><div class="sc-head"><div class="sc-dot" style="background:#3FB950"></div><div class="sc-title" style="color:#3FB950">🟢 Agresivo</div></div><div class="sc-detail" id="sc-grn-d">—</div><div class="sc-roi" style="color:#3FB950" id="sc-grn-r">—</div></div>
     </div>
   </div>
+
 </div>
+
 <nav class="nav">
   <button class="nav-btn active" onclick="goTo('chat',this)"><div class="nav-icon">💬</div><div class="nav-label">Chat</div></button>
   <button class="nav-btn" onclick="goTo('search',this)"><div class="nav-icon">🔍</div><div class="nav-label">Buscar</div></button>
@@ -325,27 +410,22 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
   <button class="nav-btn" onclick="goTo('zones',this)"><div class="nav-icon">🗺️</div><div class="nav-label">Zonas</div></button>
   <button class="nav-btn" onclick="goTo('inv',this)"><div class="nav-icon">💼</div><div class="nav-label">Inversor</div></button>
 </nav>
+
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(console.error);
 }
+
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', e => {
-  e.preventDefault();
-  deferredPrompt = e;
-  if (!localStorage.getItem('cp_banner_closed')) {
+  e.preventDefault(); deferredPrompt = e;
+  if (!localStorage.getItem('cp_banner_closed'))
     document.getElementById('install-banner').classList.add('show');
-  }
 });
-function installApp() {
-  deferredPrompt?.prompt();
-  deferredPrompt?.userChoice.then(() => { closeBanner(); deferredPrompt = null; });
-}
-function closeBanner() {
-  document.getElementById('install-banner').classList.remove('show');
-  localStorage.setItem('cp_banner_closed', '1');
-}
-const SYSTEM = `Sos CórdobaProp, un asistente inmobiliario experto en el mercado de Córdoba, Argentina. Hablás en español rioplatense, de forma clara, directa y profesional, como un corredor inmobiliario con 15 años de experiencia.
+function installApp() { deferredPrompt?.prompt(); deferredPrompt?.userChoice.then(()=>{closeBanner();deferredPrompt=null;}); }
+function closeBanner() { document.getElementById('install-banner').classList.remove('show'); localStorage.setItem('cp_banner_closed','1'); }
+
+const SYSTEM = `Sos JePropiedades, un asistente inmobiliario experto en el mercado de Córdoba, Argentina. Hablás en español rioplatense, de forma clara, directa y profesional, como un corredor inmobiliario con 15 años de experiencia.
 
 ZONAS Y PRECIOS DE REFERENCIA:
 - Nueva Córdoba/Centro: universitaria, dpto 2 amb USD 55k-90k, alquiler USD 350-600/mes, vacancia 2-3%
@@ -366,101 +446,165 @@ let apiKey = localStorage.getItem('cp_gemini_key') || '';
 
 window.onload = () => {
   if (apiKey) document.getElementById('setup-screen').classList.add('hidden');
-  const tab = new URLSearchParams(location.search).get('tab');
-  if (tab) {
-    const btn = document.querySelector(`.nav-btn[onclick*="'${tab}'"]`);
-    if (btn) goTo(tab, btn);
-  }
 };
-function toggleEye() {
-  const i = document.getElementById('api-key-input');
-  i.type = i.type === 'password' ? 'text' : 'password';
-}
+
+function toggleEye() { const i=document.getElementById('api-key-input'); i.type=i.type==='password'?'text':'password'; }
 async function connectAPI() {
   const key = document.getElementById('api-key-input').value.trim();
   const errEl = document.getElementById('err-msg');
-  if (!key.startsWith('AIza')) {
-    errEl.textContent = '❌ La clave debe empezar con "AIza...". Verificá que la copiaste completa.';
-    errEl.style.display = 'block'; return;
-  }
+  if (!key.startsWith('AIza')) { errEl.textContent='❌ La clave debe empezar con "AIza...".'; errEl.style.display='block'; return; }
   const btn = document.getElementById('connect-btn');
-  btn.textContent = 'Verificando...'; btn.disabled = true;
+  btn.textContent='Verificando...'; btn.disabled=true;
   try {
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${key}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{text:'ok'}]}]})});
+    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${key}`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({contents:[{role:'user',parts:[{text:'ok'}]}]})});
     if (!r.ok) throw new Error();
-    localStorage.setItem('cp_gemini_key', key);
-    apiKey = key;
+    localStorage.setItem('cp_gemini_key', key); apiKey = key;
     document.getElementById('setup-screen').classList.add('hidden');
-  } catch {
-    errEl.textContent = '❌ Clave inválida o sin conexión. Verificá la clave en Google AI Studio.';
-    errEl.style.display = 'block';
-    btn.textContent = 'Conectar gratis →'; btn.disabled = false;
-  }
+  } catch { errEl.textContent='❌ Clave inválida.'; errEl.style.display='block'; btn.textContent='Conectar gratis →'; btn.disabled=false; }
 }
-function resetKey() {
-  if (!confirm('¿Cambiar la clave de API?')) return;
-  localStorage.removeItem('cp_gemini_key'); apiKey = '';
-  document.getElementById('api-key-input').value = '';
-  document.getElementById('setup-screen').classList.remove('hidden');
-}
+function resetKey() { if(!confirm('¿Cambiar la clave de API?'))return; localStorage.removeItem('cp_gemini_key'); apiKey=''; document.getElementById('api-key-input').value=''; document.getElementById('setup-screen').classList.remove('hidden'); }
+
 function goTo(page, btn) {
-  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
-  document.getElementById('page-' + page).classList.add('active');
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.querySelectorAll('.nav-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('page-'+page).classList.add('active');
   btn.classList.add('active');
 }
-function setPill(el, g) {
-  el.closest('.filter-row').querySelectorAll('.filter-pill').forEach(p => p.classList.remove('sel'));
-  el.classList.add('sel');
-}
+function setPill(el,g) { el.closest('.filter-row').querySelectorAll('.filter-pill').forEach(p=>p.classList.remove('sel')); el.classList.add('sel'); }
 function toggleZone(card) { card.querySelector('.zone-body').classList.toggle('open'); }
+
+// ─── MERCADOLIBRE API ─────────────────────────────────────────
+const ML_CATEGORY_MAP = {
+  'Departamento': 'MLA1472',
+  'Casa': 'MLA1459',
+  'PH': 'MLA1474',
+  'Local': 'MLA1476'
+};
+const ML_OP_MAP = {
+  'Venta': 'sale',
+  'Alquiler': 'rent'
+};
+
+async function buscarML() {
+  const query = document.getElementById('ml-search').value.trim();
+  const opPill = document.querySelector('#page-search .filter-row:nth-of-type(1) .filter-pill.sel');
+  const tpPill = document.querySelector('#page-search .filter-row:nth-of-type(2) .filter-pill.sel');
+  const op = opPill ? ML_OP_MAP[opPill.textContent.trim()] || 'sale' : 'sale';
+  const category = tpPill ? ML_CATEGORY_MAP[tpPill.textContent.trim()] || 'MLA1459' : 'MLA1459';
+
+  const resultsEl = document.getElementById('ml-results');
+  resultsEl.innerHTML = `<div class="search-loading"><div class="search-spinner"></div>Buscando en MercadoLibre...</div>`;
+
+  try {
+    // Build URL — CORS proxy needed for browser calls to ML API
+    let url = `https://api.mercadolibre.com/sites/MLA/search?category=${category}&state=TUxBUENPUjM3MzJa&operation=${op}&limit=10`;
+    if (query) url += `&q=${encodeURIComponent(query + ' Córdoba')}`;
+
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('API error');
+    const data = await r.json();
+    const items = data.results || [];
+
+    if (!items.length) {
+      resultsEl.innerHTML = `<div class="search-empty"><div class="em-icon">🏚️</div>No encontramos resultados.<br>Probá con otros filtros o términos.</div>`;
+      return;
+    }
+
+    resultsEl.innerHTML = `<div style="font-size:11px;color:var(--muted);margin-bottom:4px">${items.length} propiedades encontradas en Córdoba</div>` +
+      items.map(item => renderMLCard(item)).join('');
+
+  } catch(e) {
+    resultsEl.innerHTML = `<div class="search-empty"><div class="em-icon">⚠️</div>No se pudo conectar con MercadoLibre.<br><br><span style="font-size:12px">Verificá tu conexión a internet e intentá de nuevo.</span></div>`;
+  }
+}
+
+function renderMLCard(item) {
+  const price = item.price ? formatPrice(item.price, item.currency_id) : 'Precio a consultar';
+  const title = item.title || 'Propiedad en Córdoba';
+  const location = [item.location?.neighborhood?.name, item.location?.city?.name].filter(Boolean).join(', ') || 'Córdoba';
+  const thumb = item.thumbnail ? item.thumbnail.replace('http://','https://').replace('-I.jpg','-O.jpg') : null;
+  const attrs = item.attributes || [];
+  const rooms = attrs.find(a=>a.id==='ROOMS')?.value_name;
+  const surface = attrs.find(a=>a.id==='TOTAL_AREA')?.value_name || attrs.find(a=>a.id==='COVERED_AREA')?.value_name;
+  const bathrooms = attrs.find(a=>a.id==='FULL_BATHROOMS')?.value_name;
+
+  const tags = [rooms && `🛏 ${rooms} amb.`, surface && `📐 ${surface}`, bathrooms && `🚿 ${bathrooms} baño`].filter(Boolean);
+
+  return `
+  <div class="prop-card">
+    ${thumb
+      ? `<img class="prop-thumb" src="${thumb}" alt="${title}" loading="lazy" onerror="this.style.display='none'">`
+      : `<div class="prop-thumb-placeholder">🏢</div>`
+    }
+    <div class="prop-body">
+      <div class="prop-source">🔴 MercadoLibre</div>
+      <div class="prop-price">${price}</div>
+      <div class="prop-title">${title}</div>
+      <div class="prop-location">📍 ${location}</div>
+      ${tags.length ? `<div class="prop-tags">${tags.map(t=>`<div class="tag">${t}</div>`).join('')}</div>` : ''}
+      <a class="prop-link" href="${item.permalink}" target="_blank">Ver publicación completa →</a>
+    </div>
+  </div>`;
+}
+
+function formatPrice(price, currency) {
+  if (currency === 'USD') return 'USD ' + price.toLocaleString('es-AR');
+  if (currency === 'ARS') return '$ ' + price.toLocaleString('es-AR');
+  return price.toLocaleString('es-AR');
+}
+
+// ─── CHAT ─────────────────────────────────────
 function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,90)+'px'; }
 function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();} }
 function sendChip(t) { document.getElementById('chat-input').value=t; sendMessage(); }
 function getTime() { return new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}); }
+
 function addMsg(role, text) {
   const area = document.getElementById('messages');
   const div = document.createElement('div');
-  div.className = 'msg '+role;
+  div.className='msg '+role;
   const html = text.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
-  div.innerHTML = `<div class="bubble">${html}</div><div class="msg-time">${getTime()}${role==='bot'?' · Gemini 2.0 Flash':''}</div>`;
-  area.appendChild(div); area.scrollTop = area.scrollHeight;
+  div.innerHTML=`<div class="bubble">${html}</div><div class="msg-time">${getTime()}${role==='bot'?' · Gemini 1.5 Flash':''}</div>`;
+  area.appendChild(div); area.scrollTop=area.scrollHeight;
 }
 function showTyping() {
-  const area = document.getElementById('messages');
-  const div = document.createElement('div');
+  const area=document.getElementById('messages');
+  const div=document.createElement('div');
   div.className='msg bot'; div.id='typing-ind';
   div.innerHTML=`<div class="bubble"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
   area.appendChild(div); area.scrollTop=area.scrollHeight;
 }
 function removeTyping() { document.getElementById('typing-ind')?.remove(); }
+
 async function sendMessage() {
-  const inp = document.getElementById('chat-input');
-  const text = inp.value.trim(); if(!text) return;
+  const inp=document.getElementById('chat-input');
+  const text=inp.value.trim(); if(!text)return;
   inp.value=''; inp.style.height='auto';
   document.getElementById('send-btn').disabled=true;
   addMsg('user',text);
   history.push({role:'user',parts:[{text}]});
   showTyping();
   try {
-    const r = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-flash-latest:generateContent?key=${apiKey}`,{
+    const r=await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`,{
       method:'POST',headers:{'Content-Type':'application/json'},
       body:JSON.stringify({system_instruction:{parts:[{text:SYSTEM}]},contents:history,generationConfig:{maxOutputTokens:800,temperature:0.7}})
     });
-    const d = await r.json(); removeTyping();
-    if(d.error) throw new Error(d.error.message);
-    const reply = d.candidates?.[0]?.content?.parts?.[0]?.text || 'No pude generar respuesta. Intentá de nuevo.';
+    const d=await r.json(); removeTyping();
+    if(d.error)throw new Error(d.error.message);
+    const reply=d.candidates?.[0]?.content?.parts?.[0]?.text||'No pude generar respuesta.';
     history.push({role:'model',parts:[{text:reply}]});
     addMsg('bot',reply);
   } catch(e) {
     removeTyping();
     let m='Error de conexión. ';
-    if(e.message?.includes('quota')) m='Alcanzaste el límite gratuito por hoy. Intentá mañana.';
-    else if(e.message?.includes('API_KEY')) m='Tu clave expiró. Tocá ⚙️ para actualizarla.';
+    if(e.message?.includes('quota'))m='Alcanzaste el límite gratuito por hoy.';
+    else if(e.message?.includes('API_KEY'))m='Tu clave expiró. Tocá ⚙️ para actualizarla.';
     addMsg('bot',m);
   }
   document.getElementById('send-btn').disabled=false;
 }
+
+// ─── CALCULADORAS ─────────────────────────────
 function calcROI() {
   const compra=parseFloat(document.getElementById('c-compra').value)||0;
   const alq=parseFloat(document.getElementById('c-alquiler').value)||0;
@@ -487,11 +631,11 @@ function genScenarios() {
   const cap=parseFloat(document.getElementById('inv-capital').value)||80000;
   document.getElementById('scenarios-area').style.display='flex';
   let rd,yd,gd,r,y,g;
-  if(cap<60000){rd=4.2;yd=5.8;gd=7.5;r='Dpto 1 amb. en General Paz o Alberdi. Mercado estable, vacancia baja. Ideal para primera inversión.';y='Dpto 1-2 amb. en Alberdi límite con Nueva Córdoba. Alta rotación, buena liquidez de reventa.';g='Cabaña o dpto en zona serrana (Unquillo/La Calera). Temporario de fin de semana + verano.';}
-  else if(cap<130000){rd=4.8;yd=6.2;gd=9.5;r='Dpto 2 amb. en General Paz o Alberdi. Mercado estable, alta demanda, baja vacancia.';y='Dpto 2 amb. en Nueva Córdoba o Güemes. Alta rotación universitaria, vacancia <3%.';g='Dpto 2 amb. en Carlos Paz para Airbnb. Temporada alta dic-mar con 85%+ de ocupación.';}
-  else{rd=5.2;yd=6.8;gd=10.5;r='Dpto 3 amb. o casa en Argüello. Inquilinos estables, contratos largos, baja gestión.';y='Dos deptos 2 amb. en zonas céntricas. Diversificación y flujo de caja constante.';g='Casa en Cosquín o La Falda para temporario premium o dpto en Nueva Córdoba con amenities.';}
+  if(cap<60000){rd=4.2;yd=5.8;gd=7.5;r='Dpto 1 amb. en General Paz o Alberdi. Mercado estable, vacancia baja.';y='Dpto 1-2 amb. en Alberdi límite con Nueva Córdoba. Alta rotación, buena liquidez.';g='Cabaña o dpto en zona serrana. Temporario de fin de semana + verano.';}
+  else if(cap<130000){rd=4.8;yd=6.2;gd=9.5;r='Dpto 2 amb. en General Paz o Alberdi. Mercado estable, alta demanda, baja vacancia.';y='Dpto 2 amb. en Nueva Córdoba. Alta rotación universitaria, vacancia <3%.';g='Dpto 2 amb. en Carlos Paz para Airbnb. Temporada alta dic-mar con 85%+ de ocupación.';}
+  else{rd=5.2;yd=6.8;gd=10.5;r='Dpto 3 amb. o casa en Argüello. Inquilinos estables, contratos largos, baja gestión.';y='Dos deptos 2 amb. en zonas céntricas. Diversificación y flujo de caja constante.';g='Casa en Cosquín o La Falda para temporario premium.';}
   ['red','yel','grn'].forEach((k,i)=>{
-    const roi=[rd,yd,gd][i];const txt=[r,y,g][i];
+    const roi=[rd,yd,gd][i]; const txt=[r,y,g][i];
     document.getElementById(`sc-${k}-d`).textContent=txt;
     document.getElementById(`sc-${k}-r`).textContent=`Renta neta: ${roi}% anual · USD ${Math.round(cap*roi/100/12)}/mes`;
   });
