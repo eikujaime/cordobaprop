@@ -17,13 +17,13 @@
 <style>
 *{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
 :root{
-  --bg:#0D1117;--surface:#161B22;--card:#1C2333;--border:#2D3748;
-  --gold:#E8A838;--gold2:#F5C860;--text:#F0EDE8;--muted:#8B949E;
-  --green:#3FB950;--red:#F85149;--blue:#58A6FF;
-  --font-display:'Playfair Display',serif;--font-body:'DM Sans',sans-serif;
-  --r:16px;--r-sm:10px;
-  --safe-top: env(safe-area-inset-top);
-  --safe-bot: env(safe-area-inset-bottom);
+--bg:#0D1117;--surface:#161B22;--card:#1C2333;--border:#2D3748;
+--gold:#E8A838;--gold2:#F5C860;--text:#F0EDE8;--muted:#8B949E;
+--green:#3FB950;--red:#F85149;--blue:#58A6FF;
+--font-display:'Playfair Display',serif;--font-body:'DM Sans',sans-serif;
+--r:16px;--r-sm:10px;
+--safe-top: env(safe-area-inset-top);
+--safe-bot: env(safe-area-inset-bottom);
 }
 body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:100dvh;display:flex;flex-direction:column;max-width:430px;margin:0 auto;overflow:hidden;padding-top:var(--safe-top);padding-bottom:var(--safe-bot);}
 #install-banner{background:linear-gradient(90deg,#1A2D10,#0D1A20);border-bottom:1px solid #2D4020;padding:10px 16px;display:none;align-items:center;gap:10px;flex-shrink:0;}
@@ -160,11 +160,13 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
 </style>
 </head>
 <body>
+
 <div id="install-banner">
   <div class="ib-text">📲 <span>Instalá CórdobaProp</span> como app en tu celular</div>
   <button class="ib-install" onclick="installApp()">Instalar</button>
   <button class="ib-close" onclick="closeBanner()">✕</button>
 </div>
+
 <div id="setup-screen">
   <div class="free-badge">✅ 100% Gratuito — Google Gemini API</div>
   <div class="setup-logo">CórdobaProp</div>
@@ -187,6 +189,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
     <b style="color:var(--green)">15 consultas/minuto · 1M tokens/día gratis</b>
   </div>
 </div>
+
 <div class="header">
   <div><div class="logo">CórdobaProp<span>Asistente inmobiliario IA</span></div></div>
   <div style="display:flex;align-items:center;gap:8px">
@@ -194,7 +197,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
     <button class="reset-btn" onclick="resetKey()" title="Cambiar clave API">⚙️</button>
   </div>
 </div>
+
 <div class="pages">
+
   <div class="page active" id="page-chat">
     <div class="chat-wrap">
       <div class="quick-chips">
@@ -218,6 +223,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
       </div>
     </div>
   </div>
+
   <div class="page" id="page-search">
     <div class="section-title">Operación</div>
     <div class="filter-row">
@@ -252,6 +258,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
       <div class="prop-body"><div class="prop-price">USD 52.000</div><div class="prop-title">Departamento 2 dorm. — Alta Córdoba</div><div class="prop-tags"><div class="tag">68 m²</div><div class="tag">2 dorm.</div><div class="tag">1 baño</div><div class="tag">Jardín</div></div><div class="pros-cons"><div class="pro">✅ Mayor superficie</div><div class="pro">✅ Barrio familiar</div><div class="con">⚠️ Menor liquidez</div><div class="con">⚠️ Menos demanda</div></div></div>
     </div>
   </div>
+
   <div class="page" id="page-calc">
     <div class="card">
       <div class="card-title">Calculadora ROI</div>
@@ -289,6 +296,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
       </div>
     </div>
   </div>
+
   <div class="page" id="page-zones">
     <div style="font-size:13px;color:var(--muted)">Tocá una zona para ver el análisis completo</div>
     <div class="zone-card" onclick="toggleZone(this)"><div class="zone-header"><div><div class="zone-name">Nueva Córdoba / Centro</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Universitaria · Alta densidad</div></div><div style="text-align:right"><div class="zone-price">USD 55k–90k</div><div style="font-size:11px;color:var(--muted)">2 amb.</div></div></div><div class="zone-body"><div><span class="z-tag uni">🎓 Universitaria</span><span class="z-tag prem">⭐ Alta demanda</span></div><div class="zone-detail">La zona más dinámica de Córdoba. Alta densidad de departamentos, demanda estudiantil constante y excelente liquidez de reventa.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 1.200–1.600</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler 2 amb.</span><span class="zone-stat-val">USD 350–600/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">2–3%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div></div>
@@ -297,6 +305,7 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
     <div class="zone-card" onclick="toggleZone(this)"><div class="zone-header"><div><div class="zone-name">General Paz / Alberdi</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Central · Accesible</div></div><div style="text-align:right"><div class="zone-price">USD 50k–80k</div><div style="font-size:11px;color:var(--muted)">2 amb.</div></div></div><div class="zone-body"><div><span class="z-tag uni">🎓 Joven</span><span class="z-tag fam">🏙️ Céntrico</span></div><div class="zone-detail">Zona limítrofe con Nueva Córdoba. Muy buena ubicación a precios accesibles. Alta demanda de alquiler.</div><div class="zone-stat"><span class="zone-stat-label">Precio m² venta</span><span class="zone-stat-val">USD 900–1.200</span></div><div class="zone-stat"><span class="zone-stat-label">Alquiler 2 amb.</span><span class="zone-stat-val">USD 300–500/mes</span></div><div class="zone-stat"><span class="zone-stat-label">Vacancia</span><span class="zone-stat-val">3–4%</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div></div>
     <div class="zone-card" onclick="toggleZone(this)"><div class="zone-header"><div><div class="zone-name">Sierras / Carlos Paz</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Turístico · Temporario</div></div><div style="text-align:right"><div class="zone-price">USD 50–120/noche</div><div style="font-size:11px;color:var(--muted)">Airbnb</div></div></div><div class="zone-body"><div><span class="z-tag tur">🏖️ Turístico</span><span class="z-tag prem">💰 ROI alto</span></div><div class="zone-detail">Ideal para Airbnb. Temporada alta nov-marzo con 85%+ de ocupación. ROI potencial 8-12% anual.</div><div class="zone-stat"><span class="zone-stat-label">Precio compra depto</span><span class="zone-stat-val">USD 55k–90k</span></div><div class="zone-stat"><span class="zone-stat-label">Ingreso bruto anual</span><span class="zone-stat-val">USD 8.000–15.000</span></div><div class="zone-stat"><span class="zone-stat-label">ROI potencial</span><span class="zone-stat-val">8–12% anual</span></div><div class="zone-stat"><span class="zone-stat-label">Tendencia</span><span class="zone-stat-val"><span class="trend up">↑ En alza</span></span></div></div></div>
   </div>
+
   <div class="page" id="page-inv">
     <div class="inv-header"><div class="inv-icon">💼</div><div><div style="font-family:var(--font-display);font-size:18px;color:var(--gold)">Modo Inversor</div><div style="font-size:12px;color:var(--muted);margin-top:2px">Análisis avanzado de rentabilidad</div></div></div>
     <div class="card">
@@ -317,7 +326,9 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
       <div class="scenario-box green"><div class="sc-head"><div class="sc-dot" style="background:#3FB950"></div><div class="sc-title" style="color:#3FB950">🟢 Agresivo</div></div><div class="sc-detail" id="sc-grn-d">—</div><div class="sc-roi" style="color:#3FB950" id="sc-grn-r">—</div></div>
     </div>
   </div>
+
 </div>
+
 <nav class="nav">
   <button class="nav-btn active" onclick="goTo('chat',this)"><div class="nav-icon">💬</div><div class="nav-label">Chat</div></button>
   <button class="nav-btn" onclick="goTo('search',this)"><div class="nav-icon">🔍</div><div class="nav-label">Buscar</div></button>
@@ -325,10 +336,12 @@ body{background:var(--bg);color:var(--text);font-family:var(--font-body);height:
   <button class="nav-btn" onclick="goTo('zones',this)"><div class="nav-icon">🗺️</div><div class="nav-label">Zonas</div></button>
   <button class="nav-btn" onclick="goTo('inv',this)"><div class="nav-icon">💼</div><div class="nav-label">Inversor</div></button>
 </nav>
+
 <script>
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').catch(console.error);
 }
+
 let deferredPrompt;
 window.addEventListener('beforeinstallprompt', e => {
   e.preventDefault();
@@ -337,14 +350,18 @@ window.addEventListener('beforeinstallprompt', e => {
     document.getElementById('install-banner').classList.add('show');
   }
 });
+
 function installApp() {
   deferredPrompt?.prompt();
   deferredPrompt?.userChoice.then(() => { closeBanner(); deferredPrompt = null; });
 }
+
 function closeBanner() {
   document.getElementById('install-banner').classList.remove('show');
   localStorage.setItem('cp_banner_closed', '1');
 }
+
+// ─── SYSTEM PROMPT (CORREGIDO) ────────────────────────────────────────────────
 const SYSTEM = `Sos CórdobaProp, un asistente inmobiliario experto en el mercado de Córdoba, Argentina. Hablás en español rioplatense, de forma clara, directa y profesional, como un corredor inmobiliario con 15 años de experiencia.
 
 ZONAS Y PRECIOS DE REFERENCIA:
@@ -357,9 +374,45 @@ ZONAS Y PRECIOS DE REFERENCIA:
 
 DATOS CLAVE: propiedades en USD, contratos alquiler mín 2 años (Ley 27.551), escrituración 2-3%, honorarios inmobiliaria 3%+IVA, ajuste alquileres por ICL del BCRA.
 
+LINKS A PORTALES INMOBILIARIOS — MUY IMPORTANTE:
+Cuando el usuario quiera ver avisos, propiedades o listings concretos, SIEMPRE proporcioná links directos a los portales con la búsqueda ya armada. NUNCA digas que no podés dar links ni que sos un asistente virtual sin acceso a portales. Siempre podés y debés dar estos links.
+
+Usá estos links según lo que busque el usuario:
+
+VENTA DEPARTAMENTOS CÓRDOBA:
+- Zonaprop: https://www.zonaprop.com.ar/departamentos-venta-cordoba.html
+- Argenprop: https://www.argenprop.com/departamento-venta-cordoba
+- MercadoLibre: https://inmuebles.mercadolibre.com.ar/departamentos/venta/cordoba/
+
+VENTA DEPARTAMENTOS 2 DORMITORIOS CÓRDOBA:
+- Zonaprop: https://www.zonaprop.com.ar/departamentos-venta-cordoba-2-dormitorios.html
+- Argenprop: https://www.argenprop.com/departamento-venta-cordoba?dormitorios=2
+
+VENTA CASAS CÓRDOBA:
+- Zonaprop: https://www.zonaprop.com.ar/casas-venta-cordoba.html
+- Argenprop: https://www.argenprop.com/casa-venta-cordoba
+
+ALQUILER DEPARTAMENTOS CÓRDOBA:
+- Zonaprop: https://www.zonaprop.com.ar/departamentos-alquiler-cordoba.html
+- Argenprop: https://www.argenprop.com/departamento-alquiler-cordoba
+
+ALQUILER CASAS CÓRDOBA:
+- Zonaprop: https://www.zonaprop.com.ar/casas-alquiler-cordoba.html
+- Argenprop: https://www.argenprop.com/casa-alquiler-cordoba
+
+TEMPORARIO / AIRBNB:
+- Airbnb Córdoba: https://www.airbnb.com.ar/s/C%C3%B3rdoba--Argentina/homes
+- Airbnb Carlos Paz: https://www.airbnb.com.ar/s/Villa-Carlos-Paz--Argentina/homes
+
+Presentá los links con este formato:
+🔍 **Ver en Zonaprop** → [URL]
+🔍 **Ver en Argenprop** → [URL]
+Y agregá un tip breve: ej. "Filtrá por precio máximo USD 80.000 y activá 'Con fotos' para mejores resultados."
+
 Si el usuario menciona [INVERSOR] o quiere invertir, ofrecé análisis con 3 escenarios: conservador (4-5% ROI), equilibrado (6-7%), agresivo (8-12% temporario/airbnb).
 
 Respondé conciso, con datos concretos y recomendación clara. Párrafos cortos.`;
+// ─────────────────────────────────────────────────────────────────────────────
 
 let history = [];
 let apiKey = localStorage.getItem('cp_gemini_key') || '';
@@ -372,10 +425,12 @@ window.onload = () => {
     if (btn) goTo(tab, btn);
   }
 };
+
 function toggleEye() {
   const i = document.getElementById('api-key-input');
   i.type = i.type === 'password' ? 'text' : 'password';
 }
+
 async function connectAPI() {
   const key = document.getElementById('api-key-input').value.trim();
   const errEl = document.getElementById('err-msg');
@@ -397,35 +452,48 @@ async function connectAPI() {
     btn.textContent = 'Conectar gratis →'; btn.disabled = false;
   }
 }
+
 function resetKey() {
   if (!confirm('¿Cambiar la clave de API?')) return;
   localStorage.removeItem('cp_gemini_key'); apiKey = '';
   document.getElementById('api-key-input').value = '';
   document.getElementById('setup-screen').classList.remove('hidden');
 }
+
 function goTo(page, btn) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
   document.getElementById('page-' + page).classList.add('active');
   btn.classList.add('active');
 }
+
 function setPill(el, g) {
   el.closest('.filter-row').querySelectorAll('.filter-pill').forEach(p => p.classList.remove('sel'));
   el.classList.add('sel');
 }
+
 function toggleZone(card) { card.querySelector('.zone-body').classList.toggle('open'); }
 function autoResize(el) { el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,90)+'px'; }
 function handleKey(e) { if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();sendMessage();} }
 function sendChip(t) { document.getElementById('chat-input').value=t; sendMessage(); }
 function getTime() { return new Date().toLocaleTimeString('es-AR',{hour:'2-digit',minute:'2-digit'}); }
+
 function addMsg(role, text) {
   const area = document.getElementById('messages');
   const div = document.createElement('div');
   div.className = 'msg '+role;
-  const html = text.replace(/\*\*(.*?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>');
+  const html = text
+    .replace(/\*\*(.*?)\*\*/g,'<b>$1</b>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,'<a href="$2" target="_blank" style="color:var(--gold);text-decoration:underline">$1</a>')
+    .replace(/(https?:\/\/[^\s<]+)/g, (url) => {
+      if (text.includes(']('+url+')')) return url;
+      return `<a href="${url}" target="_blank" style="color:var(--gold);text-decoration:underline">${url}</a>`;
+    })
+    .replace(/\n/g,'<br>');
   div.innerHTML = `<div class="bubble">${html}</div><div class="msg-time">${getTime()}${role==='bot'?' · Gemini 2.0 Flash':''}</div>`;
   area.appendChild(div); area.scrollTop = area.scrollHeight;
 }
+
 function showTyping() {
   const area = document.getElementById('messages');
   const div = document.createElement('div');
@@ -433,7 +501,9 @@ function showTyping() {
   div.innerHTML=`<div class="bubble"><div class="typing"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div></div>`;
   area.appendChild(div); area.scrollTop=area.scrollHeight;
 }
+
 function removeTyping() { document.getElementById('typing-ind')?.remove(); }
+
 async function sendMessage() {
   const inp = document.getElementById('chat-input');
   const text = inp.value.trim(); if(!text) return;
@@ -461,6 +531,7 @@ async function sendMessage() {
   }
   document.getElementById('send-btn').disabled=false;
 }
+
 function calcROI() {
   const compra=parseFloat(document.getElementById('c-compra').value)||0;
   const alq=parseFloat(document.getElementById('c-alquiler').value)||0;
@@ -475,6 +546,7 @@ function calcROI() {
   document.getElementById('roi-total').textContent='USD '+Math.round(total).toLocaleString();
   document.getElementById('roi-result').classList.add('show');
 }
+
 function calcHipo() {
   const m=parseFloat(document.getElementById('h-monto').value)||0;
   const t=parseFloat(document.getElementById('h-tasa').value)/100/12;
@@ -483,6 +555,7 @@ function calcHipo() {
   document.getElementById('hipo-cuota').textContent='$ '+Math.round(c).toLocaleString('es-AR');
   document.getElementById('hipo-result').style.display='block';
 }
+
 function genScenarios() {
   const cap=parseFloat(document.getElementById('inv-capital').value)||80000;
   document.getElementById('scenarios-area').style.display='flex';
